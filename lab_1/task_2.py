@@ -1,4 +1,4 @@
-def task_2(n):
+def task_2(n=5):
     for i in range(n+1):
         for j in range(i):
             print('*', end='')
@@ -9,16 +9,14 @@ def task_2(n):
         print('')
 
 
-task_2(5)
-
-# assert task_2() == '''
-# *
-# * *
-# * * *
-# * * * *
-# * * * * *
-# * * * *
-# * * *
-# * *
-# *
-# '''
+assert task_2() == '''
+*
+* *
+* * *
+* * * *
+* * * * *
+* * * *
+* * *
+* *
+*
+'''
