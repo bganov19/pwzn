@@ -14,9 +14,14 @@ def counting_sort(values, _max, _min=0):
     :type _min: int
     :return:
     """
-    pass
 
-# bla bla bla
+    bins = [values.count(elem) for elem in range(_min, _max)]
+    t = []
+
+    for i in range(_min, _max):
+        t += [i]*bins[i]
+
+    return t
 
 
 if __name__ == '__main__':
@@ -24,3 +29,4 @@ if __name__ == '__main__':
         [99, 4, 33, 2, 2, 1, 65, 3, 97, 53],
         100,
     ) == [1, 2, 2, 3, 4, 33, 53, 65, 97, 99]
+

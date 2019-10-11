@@ -8,7 +8,22 @@ def count_letters(msg):
     :return: Most frequent pair char - count in message.
     :rtype: list
     """
-    pass
+    s = []
+
+    for elem in msg:
+        if elem not in s:
+            s.append(elem)
+
+    chars = [msg.count(elem) for elem in s]
+
+    if chars.count(max(chars)) == 1:
+        return s[chars.index(max(chars))], max(chars)
+    else:
+        for elem in chars:
+            if elem != max(chars):
+                chars.pop(chars.index(elem))
+                s.pop(chars.index(elem))
+        return min(s), max(chars)
 
 
 if __name__ == '__main__':
