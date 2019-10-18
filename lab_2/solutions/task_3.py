@@ -8,14 +8,13 @@ def unique(values):
     :return: Unique values in order of appear.
     :rtype: list
     """
-
-    t = []
-
+    u_values = set()
+    u_ordered = []
     for elem in values:
-        if elem not in t:
-            t.append(elem)
-
-    return t
+        if elem not in u_values:
+            u_values.add(elem)
+            u_ordered.append(elem)
+    return u_ordered
 
 
 if __name__ == "__main__":

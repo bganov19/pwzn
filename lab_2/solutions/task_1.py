@@ -1,3 +1,6 @@
+from itertools import chain
+
+
 def counting_sort(values, _max, _min=0):
     """
     Function returns sorted list.
@@ -14,14 +17,15 @@ def counting_sort(values, _max, _min=0):
     :type _min: int
     :return:
     """
-
-    bins = [values.count(elem) for elem in range(_min, _max)]
-    t = []
-
-    for i in range(_min, _max):
-        t += [i]*bins[i]
-
-    return t
+    _sorted = [0] * (_max - _min + 1)
+    s_values = [None] * len(values)
+    for ii in values:
+        _sorted[ii] += 1
+    idx = 0
+    for ii, count in enumerate(_sorted):
+        s_values[idx:idx+count] = [ii + _min] * count
+        idx += count
+    return s_values
 
 
 if __name__ == '__main__':

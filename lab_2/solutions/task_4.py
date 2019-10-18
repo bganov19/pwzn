@@ -8,27 +8,21 @@ def count_letters(msg):
     :return: Most frequent pair char - count in message.
     :rtype: list
     """
-    s = []
-
+    counts = dict()
     for elem in msg:
-        if elem not in s:
-            s.append(elem)
-
-    chars = [msg.count(elem) for elem in s]
-
-    if chars.count(max(chars)) == 1:
-        return s[chars.index(max(chars))], max(chars)
-    else:
-        for elem in chars:
-            if elem != max(chars):
-                chars.pop(chars.index(elem))
-                s.pop(chars.index(elem))
-        return min(s), max(chars)
-
+        if elem not in counts:
+            counts[elem] = 1
+        else:
+            counts[elem] += 1
+    _max, max_key = 0, 'aa'
+    for key, val in counts.items():
+        if val > _max or (val == _max and key < max_key):
+            _max = val
+            max_key = key
+    return max_key, _max
 
 
 if __name__ == '__main__':
     msg = 'Abrakadabra'
     assert count_letters(msg) == ('a', 4)
     assert count_letters('za') == ('a', 1)
-
