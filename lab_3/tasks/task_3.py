@@ -1,5 +1,3 @@
-import task2.py
-
 """
 Zadanie za 2 pkt.
 
