@@ -8,6 +8,7 @@ def count_letters(msg):
     :return: Most frequent pair char - count in message.
     :rtype: list
     """
+
     s = []
 
     for elem in msg:
@@ -26,9 +27,7 @@ def count_letters(msg):
         return min(s), max(chars)
 
 
-
 if __name__ == '__main__':
     msg = 'Abrakadabra'
     assert count_letters(msg) == ('a', 4)
     assert count_letters('za') == ('a', 1)
-
