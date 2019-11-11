@@ -72,8 +72,7 @@ class Calculator:
             print("Wrong Operation")
         except EmptyMemory:
             print("Calculator memory is empty")
-        except ZeroDivisionError:
-            print("You can't divide by 0")
+
 
     @property
     def memory(self):
