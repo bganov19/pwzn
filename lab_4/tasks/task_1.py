@@ -10,13 +10,13 @@ użyj wartość z pamięci kalkulatora. Obsłuż przypadki skrajne.
 
 class Calculator:
     def __init__(self):
-        self.memory = None
         # Podpowiedz: użyj atrybutu do przechowywania wyniku
         # ostatniej wykonanej operacji, tak by metoda memorize przypisywała
         # wynik zapisany w tym atrybucie
         self._short_memory = None
+        self.result = None
 
-    def run(self, operator, arg1, arg2):
+    def run(self, operator, arg1, arg2=None):
         """
         Returns result of given operation.
 
@@ -29,15 +29,34 @@ class Calculator:
         :return: result of operation
         :rtype: float
         """
-        raise NotImplementedError
+
+        if arg2 is None:
+            arg2 = self.memory
+
+        if operator == "+":
+            self.result = arg1 + arg2
+        elif operator == "-":
+            self.result = arg1 - arg2
+        elif operator == "*":
+            self.result = arg1 * arg2
+        elif operator == "/":
+            self.result = arg1 / arg2
+        else:
+            return None
+
+        return self.result
+
+    @property
+    def memory(self):
+        return self._short_memory
 
     def memorize(self):
         """Saves last operation result to memory."""
-        raise NotImplementedError
+        self._short_memory = self.result
 
     def clean_memory(self):
         """Cleans memorized value"""
-        raise NotImplementedError
+        self._short_memory = None
 
     def in_memory(self):
         """Prints memorized value."""

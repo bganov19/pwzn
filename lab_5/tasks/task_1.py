@@ -51,11 +51,29 @@ class Calculator:
         :return: result of operation
         :rtype: float
         """
-        if operator in self.operations:
-            arg2 = arg2 or self.memory
-            if arg2:
-                self._short_memory = self.operations[operator](arg1, arg2)
-                return self._short_memory
+        try:
+            if operator in self.operations:
+                arg2 = arg2 or self.memory
+
+                if arg2 is None and self.memory is None:
+                    raise EmptyMemory
+
+                if arg2:
+                    if str(arg1).isdigit() and str(arg2).isdigit():
+                        self._short_memory = self.operations[operator](arg1, arg2)
+                        return self._short_memory
+                    else:
+                        raise NotNumberArgument
+            else:
+                raise WrongOperation
+        except NotNumberArgument:
+            print("One of arguments is not a number")
+        except WrongOperation:
+            print("Wrong Operation")
+        except EmptyMemory:
+            print("Calculator memory is empty")
+        except ZeroDivisionError:
+            print("You can't divide by 0")
 
     @property
     def memory(self):
@@ -71,7 +89,13 @@ class Calculator:
 
     def in_memory(self):
         """Prints memorized value."""
-        print(f"Zapamiętana wartość: {self.memory}")
+        try:
+            if self.memory is None:
+                raise EmptyMemory
+            else:
+                print(f"Zapamiętana wartość: {self.memory}")
+        except EmptyMemory:
+            print("Calculator memory is empty")
 
 
 if __name__ == '__main__':
